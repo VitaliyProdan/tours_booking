@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use dosamigos\datepicker\DatePicker;
 $this->title = 'Booking ' . $tour->name ;
 ?>
 
@@ -18,7 +19,23 @@ $this->title = 'Booking ' . $tour->name ;
             <h3 class="panel-title">Please Fill The Form</h3>
         </div>
         <div class="panel-body">
-            <?php $form = ActiveForm::begin(['id' => 'booking-form']); ?>
+            <div class="col-md-12">
+
+                <label class="control-label" for="booking-date">Select Date</label>
+                <?php $form = ActiveForm::begin(['id' => 'booking-form']); ?>
+                <?= DatePicker::widget([
+                    'model' => $booking,
+                    'attribute' => 'date',
+                    'template' => '{addon}{input}',
+                    'clientOptions' => [
+                        'autoclose' => true,
+                        'startDate' => date_default_timezone_get(),
+                        'format' => 'yyyy-mm-dd'
+                    ]
+                ]);?>
+            </div>
+
+
             <?php foreach($tour->customFields as $field): ?>
                 <div class="col-sm-12">
                     <?= $form->field($field, "$field->id")->textInput(['maxlength' => true, 'value' => ''])->label($field->name) ?>

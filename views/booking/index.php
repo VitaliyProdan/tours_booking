@@ -13,10 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Tour', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -24,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'tour.name',
+            'date',
             'created_at:datetime',
 
             [

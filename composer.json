@@ -16,9 +16,11 @@
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.5",
-        "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*",
-        "wbraganca/yii2-dynamicform": "*"
+        "yiisoft/yii2-bootstrap": "@stable",
+        "yiisoft/yii2-swiftmailer": "@stable",
+        "wbraganca/yii2-dynamicform": "@stable",
+        "bower-asset/jquery": "@stable",
+        "2amigos/yii2-date-picker-widget" : "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use DateTime;
 
 /**
  * This is the model class for table "booking".
@@ -11,6 +12,7 @@ use Yii;
  * @property integer $tour_id
  * @property string $result
  * @property integer $created_at
+ * @property $date
  *
  * @property Tour $tour
  */
@@ -30,8 +32,10 @@ class Booking extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['date'], 'required'],
             [['tour_id', 'created_at'], 'integer'],
-            [['result'], 'string']
+            [['result'], 'string'],
+            [['date'], 'date', 'format'=>'yyyy-M-d']
         ];
     }
 
@@ -45,6 +49,7 @@ class Booking extends \yii\db\ActiveRecord
             'tour_id' => 'Tour ID',
             'result' => 'Result',
             'created_at' => 'Created At',
+            'date' => 'Date'
         ];
     }
 
@@ -65,5 +70,10 @@ class Booking extends \yii\db\ActiveRecord
 
     public function getEncodedResults(){
         return json_decode($this->result);
+    }
+
+    public function getFormatedDate(){
+        $date = new DateTime($this->date);
+        return $date->format('jS F Y');
     }
 }

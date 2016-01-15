@@ -47,8 +47,8 @@ class BookingController extends Controller
     public function actionCreate($id)
     {
         $tour = $this->findTour($id);
-        if (!empty($_POST)) {
-            $booking = new Booking(['tour_id' => $tour->id]);
+        $booking = new Booking(['tour_id' => $tour->id]);
+        if ($booking->load(Yii::$app->request->post())) {
             $fields = ArrayHelper::map($tour->customFields, 'id', 'name');
             $result = [];
             foreach($_POST['CustomField'] as $key=> $field_value){
@@ -63,6 +63,7 @@ class BookingController extends Controller
         }
         return $this->render('create', [
             'tour' => $tour,
+            'booking' => $booking,
         ]);
     }
 

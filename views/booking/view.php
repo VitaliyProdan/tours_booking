@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="booking-view">
     <h1> <?= $this->title ?></h1>
+    <h4> On date: <?= $model->formatedDate  ?> </h4>
     <hr />
     <div class="panel panel-default">
         <div class="panel-heading">
